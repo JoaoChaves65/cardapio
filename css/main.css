@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'PoppinsMedium';
+    src: url('../fonts/Poppins-Medium.otf');
+}
+
+@font-face {
+    font-family: 'PoppinsRegular';
+    src: url('../fonts/Poppins-Regular.otf');
+}
+
 :root{
     --color-background: #FFFDF7;
     --color-black: #212121;
@@ -12,5 +22,17 @@
 }
 
 html, body{
+    font-family: 'PoppinsRegular', 'Rubik', sans-serif;
     background-color: var(--color-background);
+    color: var(--color-text);
+}
+
+b{
+    font-family: 'PoppinsMedium', 'Rubik', sans-serif;
+}
+
+.nav-link{
+    color: var(--color-black);
+    padding-left: 35px!important;
+    padding-right: 35px!important;
 }
