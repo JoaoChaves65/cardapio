@@ -1,0 +1,16 @@
+:root{
+    --color-background: #FFFDF7;
+    --color-black: #212121;
+    --color-text: #4F4F4F;
+    --color-text-out: #90908E;
+    --color-primary: #FFBF00;
+    --color-secundary: #FFF2CC;
+    --color-white: #FFFFFF;
+    --color-red: #E74C3C;
+    --color-green: #2ECC71;
+    --color-separate: #CCCCCC;
+}
+
+html, body{
+    background-color: var(--color-background);
+}
