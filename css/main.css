@@ -130,3 +130,20 @@ a.navbar-brand {
 .btn-social{
     width: 50px;
 }
+
+.card-banner {
+    height: 450px;
+    width: 450px;
+    border-radius: 170px;
+    background-color: #F4C949;
+    position: absolute;
+    right: 0;
+    top: -80px;
+}
+
+.img-banner img {
+    position: absolute;
+    width: 570px;
+    top: 30px;
+    right: 15px;
+}
