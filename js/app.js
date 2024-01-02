@@ -15,12 +15,16 @@ cardapio.eventos = {
 cardapio.metodos = {
 
     //Obtém a lista de itens do cardápio
-    obterItensCardapio: (categoria = 'burgers') => {
+    obterItensCardapio: (categoria = 'burgers', vermais = false) => {
 
         var filtro = MENU[categoria];
         console.log(filtro);
 
-        $("#itensCardapio").html('')
+        if (!vermais) {
+            $("#itensCardapio").html('');
+            $("#btnVerMais").removeClass('hidden');
+        }
+        
 
         $.each(filtro, (i, e) => {
 
@@ -28,7 +32,15 @@ cardapio.metodos = {
             .replace(/\${nome}/g, e.name)
             .replace(/\${preco}/g, e.price.toFixed(2).replace('.', ','))
 
-            $("#itensCardapio").append(temp)
+            //Botão ver mais foi clicado (12 itens)
+            if(vermais && i >= 8 && i < 12) {
+                $("#itensCardapio").append(temp)
+            }
+
+            //Paginação inicial (8 iniciais)
+            if(!vermais && i < 8) {
+                $("#itensCardapio").append(temp)
+            }
 
         })
 
@@ -38,6 +50,16 @@ cardapio.metodos = {
 
         //Seta o menu para ativo
         $("#menu-" + categoria).addClass('active')
+    },
+
+    //Clique no botão de ver mais
+    verMais: () => {
+
+        var ativo = $(".container-menu a.active").attr('id').split('menu-')[1];
+        cardapio.metodos.obterItensCardapio(ativo, true);
+
+        $("#btnVerMais").addClass('hidden');
+
     },
 
 };
