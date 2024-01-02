@@ -120,11 +120,33 @@ cardapio.metodos = {
                 alert('Item adicionado ao carrinho')
                 $("#qntd-" + id).text(0);
 
+                cardapio.metodos.atualizarBagdeTotal();
             }
 
         }
-    }
+    },
 
+    //Atualiza o bagde de totais dos botões "Meu carrinho"
+    atualizarBagdeTotal: () => {
+
+        var total = 0;
+
+        $.each(MEU_CARRINHO, (i, e) => {
+            total += e.qntd
+        })
+
+        if(total > 0) {
+            $(".botao-carrinho").removeClass('hidden')
+            $(".container-total-carrinho").removeClass('hidden')
+        }
+        else { 
+            $(".botao-carrinho").addClass('hidden')
+            $(".container-total-carrinho").addClass('hidden')
+        }
+
+        $(".bagde-total-carrinho").html(total);
+
+    },
 };
 
 cardapio.templates = {
