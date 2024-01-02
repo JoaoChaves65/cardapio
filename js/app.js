@@ -117,7 +117,7 @@ cardapio.metodos = {
                     MEU_CARRINHO.push(item[0])
                 }
 
-                alert('Item adicionado ao carrinho')
+                cardapio.metodos.mensagem('Item adicionado ao carrinho');
                 $("#qntd-" + id).text(0);
 
                 cardapio.metodos.atualizarBagdeTotal();
@@ -147,6 +147,20 @@ cardapio.metodos = {
         $(".bagde-total-carrinho").html(total);
 
     },
+
+    mensagem: (texto, cor = 'green', tempo = 3500) => {
+
+        let id = Math.floor(Date.now() * Math.random()).toString();
+        
+        let msg = `<div id="msg-${id}" class="toast ${cor}">${texto}</div>`;
+
+        $("#container-mensagens").append(msg);
+
+        setTimeout(() => {
+            $("#msg-" + id).remove();
+        }, tempo);
+
+    }
 };
 
 cardapio.templates = {
