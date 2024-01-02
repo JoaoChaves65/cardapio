@@ -4,6 +4,8 @@ $(document).ready(function () {
 
 var cardapio = {};
 
+var MEU_CARRINHO = [];
+
 cardapio.eventos = {
 
     init: () => {
@@ -63,7 +65,6 @@ cardapio.metodos = {
 
     },
 
-
     //Diminuir a quantidade do item no cardápio
     diminuirQuantidade: (id) => {
 
@@ -82,6 +83,47 @@ cardapio.metodos = {
         $("#qntd-" + id).text(qntdAtual + 1)
         
     },
+
+    //Adicionar ao carrinho o item do cardápio
+    adicionarAoCarrinho: (id) => {
+
+        let qntdAtual = parseInt($("#qntd-" + id).text());
+
+        if(qntdAtual > 0) {
+
+            //Obter a categoria ativa
+            var categoria = $(".container-menu a.active").attr('id').split('menu-')[1];
+
+            //Obter a lista de itens
+            let filtro = MENU[categoria]
+
+            //Obtem o item
+            let item = $.grep(filtro, (e, i) => { return e.id == id });
+
+            if(item.length > 0) {
+
+                //Validar se já existe este item no carrinho
+                let existe = $.grep(MEU_CARRINHO, (elem, index) => { return elem.id == id });
+
+                //Caso já exista o item no carrinho, só altera a quantidade
+                if(existe.length > 0) {
+                    let objIndex = MEU_CARRINHO.findIndex((obj => obj.id == id))
+                    MEU_CARRINHO[objIndex].qntd = MEU_CARRINHO[objIndex].qntd + qntdAtual; 
+                }
+
+                //Caso ainda não exista o item no carrinho, adiciona ele
+                else {
+                    item[0].qntd = qntdAtual;
+                    MEU_CARRINHO.push(item[0])
+                }
+
+                alert('Item adicionado ao carrinho')
+                $("#qntd-" + id).text(0);
+
+            }
+
+        }
+    }
 
 };
 
@@ -103,7 +145,7 @@ cardapio.templates = {
                     <span class="btn-menos" onclick="cardapio.metodos.diminuirQuantidade('\${id}')"><i class="fas fa-minus"></i></span>
                     <span class="add-numero-itens" id="qntd-\${id}">0</span>
                     <span class="btn-mais" onclick="cardapio.metodos.aumentarQuantidade('\${id}')"><i class="fas fa-plus"></i></span>
-                    <span class="btn btn-add"><i class="fa fa-shopping-bag"></i></span>
+                    <span class="btn btn-add" onclick="cardapio.metodos.adicionarAoCarrinho('\${id}')"><i class="fa fa-shopping-bag"></i></span>
                 </div>
             </div>
         </div>
