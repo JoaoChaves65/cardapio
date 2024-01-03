@@ -272,7 +272,14 @@ cardapio.metodos = {
         cardapio.metodos.atualizarCarrinho(id, qntdAtual + 1);
     },
     
+    //Botão remover item do carrinho
     removerItemCarrinho: (id) => {
+
+        MEU_CARRINHO = $.grep(MEU_CARRINHO, (e, i) => {return e.id != id})
+        cardapio.metodos.carregarCarrinho();
+
+        //Atualiza o botão carrinho com a quantidade atualizada
+        cardapio.metodos.atualizarBagdeTotal();
 
     },
 
