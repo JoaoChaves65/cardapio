@@ -76,7 +76,7 @@ cardapio.metodos = {
 
     },
 
-    //Diminuir a quantidade do item no cardápio
+    //Aumentar a quantidade do item no cardápio
     aumentarQuantidade: (id) => {
 
         let qntdAtual = parseInt($("#qntd-" + id).text());
@@ -249,15 +249,41 @@ cardapio.metodos = {
         }
     },
 
+    //Diminuir quantidade do item do carrinho
     diminuirQuantidadeCarrinho: (id) => {
         
+        let qntdAtual = parseInt($("#qntd-carrinho-" + id).text());
+
+        if(qntdAtual > 1) {
+            $("#qntd-carrinho-" + id).text(qntdAtual - 1);
+            cardapio.metodos.atualizarCarrinho(id, qntdAtual - 1);
+        }
+        else {
+            cardapio.metodos.removerItemCarrinho(id);
+        }
+
     },
     
+    //Aumentar quantidade do item do carrinho
     aumentarQuantidadeCarrinho: (id) => {
         
+        let qntdAtual = parseInt($("#qntd-carrinho-" + id).text());
+        $("#qntd-carrinho-" + id).text(qntdAtual + 1);
+        cardapio.metodos.atualizarCarrinho(id, qntdAtual + 1);
     },
     
     removerItemCarrinho: (id) => {
+
+    },
+
+    //Atualiza o carrinho com a quantidade atual
+    atualizarCarrinho: (id, qntd) => {
+
+        let objIndex = MEU_CARRINHO.findIndex((obj => obj.id == id));
+        MEU_CARRINHO[objIndex].qntd = qntd;
+
+        //Atualiza o botão carrinho com a quantidade atualizada
+        cardapio.metodos.atualizarBagdeTotal();
 
     },
 
