@@ -8,7 +8,7 @@ var MEU_CARRINHO = [];
 var MEU_ENDERECO = null;
 
 var VALOR_CARRINHO = 0;
-var VALOR_ENTREGA = 5;
+var VALOR_ENTREGA = 7.5;
 
 var CELULAR_EMPRESA = '5586991234567';
 
@@ -16,6 +16,8 @@ cardapio.eventos = {
 
     init: () => {
         cardapio.metodos.obterItensCardapio();
+        cardapio.metodos.carregarBotaoLigar();
+        cardapio.metodos.carregarBotaoReserva();
     }
 
 };
@@ -511,6 +513,25 @@ cardapio.metodos = {
 
         }
 
+    },
+
+    //Carrega o link do botão reserva
+    carregarBotaoReserva: () => {
+
+        var texto = 'Olá, gostaria de fazer uma *reserva*';
+
+        let encode = encodeURI(texto)
+
+        let URL = `https://wa.me/${CELULAR_EMPRESA}?text=${encode}`;
+
+        $("#btnReserva").attr('href', URL);
+    },
+
+    //Carrega o link do botão ligar
+    carregarBotaoLigar: () => {
+
+        $("#btnLigar").attr('href', `tel:${CELULAR_EMPRESA}`);
+        
     },
 
     //Mensagens
