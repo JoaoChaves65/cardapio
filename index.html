@@ -408,7 +408,7 @@
                     <div class="col-4">
                         <div class="form-group container-cep">
                             <label>CEP:</label>
-                            <input id="txtCEP" type="text" class="form-control">
+                            <input id="txtCEP" type="text" class="form-control" autocomplete="off">
                             <a class="btn btn-yellow btn-sm" onclick="cardapio.metodos.buscarCep()">
                                 <i class="fa fa-search"></i>
                             </a>
@@ -420,42 +420,43 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label>Endereço:</label>
-                            <input id="txtEndereco" type="text" class="form-control">
+                            <input id="txtEndereco" type="text" class="form-control" autocomplete="off">
                         </div>
                     </div>
 
                     <div class="col-4">
                         <div class="form-group">
                             <label>Bairro:</label>
-                            <input id="txtBairro" type="text" class="form-control">
+                            <input id="txtBairro" type="text" class="form-control" autocomplete="off">
                         </div>
                     </div>
 
                     <div class="col-2">
                         <div class="form-group">
                             <label>Número:</label>
-                            <input id="txtNumero" type="text" class="form-control">
+                            <input id="txtNumero" type="text" class="form-control" autocomplete="off">
                         </div>
                     </div>
 
                     <div class="col-6">
                         <div class="form-group">
                             <label>Cidade:</label>
-                            <input id="txtCidade" type="text" class="form-control">
+                            <input id="txtCidade" type="text" class="form-control" autocomplete="off">
                         </div>
                     </div>
 
                     <div class="col-4">
                         <div class="form-group">
                             <label>Complemento:</label>
-                            <input id="txtComplemento" type="text" class="form-control">
+                            <input id="txtComplemento" type="text" class="form-control" autocomplete="off">
                         </div>
                     </div>
 
                     <div class="col-2">
                         <div class="form-group">
                             <label>UF:</label>
-                            <select id="ddlUf" class="form-control">
+                            <select id="ddlUf" class="form-control" autocomplete="off">
+                                <option value="-1">...</option>
                                 <option value="AC">AC</option>
                                 <option value="AL">AL</option>
                                 <option value="AP">AP</option>
