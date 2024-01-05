@@ -341,6 +341,52 @@ cardapio.metodos = {
 
     },
 
+    //API ViaCEP
+    buscarCep: () => {
+
+        //Cria a variável com o valor do CEP    
+        var cep = $("#txtCEP").val().trim().replace(/\D/g, '');
+
+        //Verifica se o CEP possui valor informado
+        if (cep != "") {
+
+            //Expressão regular para validar CEP
+            var validacep = /^[0-9]{8}$/; 
+
+            if(validacep.test(cep)) {
+
+                $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+
+                    if (!("erro" in dados)) {
+
+                        //Atualizar os campos com os valores retornados
+                        $("#textEndereco").val(dados.logradouro);
+                        $("#textBairro").val(dados.bairro);
+                        $("#textCidade").val(dados.localidade);
+                        $("#ddlUf").val(dados.uf);
+                        $("#textNumero").focus();
+                    }
+                    else {
+                        cardapio.metodos.mensagem('CEP não encontrado. Preencha as informações manualmente.');
+                        $("#txtEndereco").focus();
+                    }
+
+                })
+
+            }
+            else {
+                cardapio.metodos.mensagem('Formato do CEP inválido.');
+                $("#txtCEP").focus();
+            }
+
+        }
+        else {
+            cardapio.metodos.mensagem('Informe o CEP, por favor.');
+            $("#txtCEP").focus();
+        }
+
+    },
+
     //Mensagens
     mensagem: (texto, cor = 'red', tempo = 3500) => {
 
